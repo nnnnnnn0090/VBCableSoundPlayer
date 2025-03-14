@@ -23,7 +23,7 @@ class VBCableSoundPlayer:
     def play(cls, data, rate) -> bool:
         """Play sound using the singleton instance."""
         if cls._instance is None:
-            raise Exception("Player is not initialized. Call init_player first.")
+            cls.init_player()
         sd.play(data, rate)
         sd.wait()
         return True

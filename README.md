@@ -1,6 +1,7 @@
 # VBCableSoundPlayer
 
-This package outputs audio to the VBCable virtual audio device.
+This package outputs audio to the VBCable virtual audio device.   
+https://vb-audio.com/Cable/
 
 ## Installation
 
