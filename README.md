@@ -16,6 +16,7 @@ pip install VBCableSoundPlayer
 import VBCableSoundPlayer
 
 VBCableSoundPlayer.play(data, rate)
+VBCableSoundPlayer.wait()
 ```
 
 ## Parameters

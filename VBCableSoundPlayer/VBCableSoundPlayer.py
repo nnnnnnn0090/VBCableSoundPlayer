@@ -15,18 +15,21 @@ class VBCableSoundPlayer:
 
     @classmethod
     def init_player(cls):
-        """Initialize the singleton instance of the player."""
         if cls._instance is None:
             cls._instance = cls(output_device_name="CABLE Input")
 
     @classmethod
     def play(cls, data, rate) -> bool:
-        """Play sound using the singleton instance."""
         if cls._instance is None:
             cls.init_player()
         sd.play(data, rate)
-        sd.wait()
         return True
+    
+    @classmethod
+    def wait(cls):
+        if cls._instance is None:
+            cls.init_player()
+        sd.wait()
 
     def _search_output_device_id(self, output_device_name, output_device_host_api=0) -> int:
         devices = sd.query_devices()
@@ -39,6 +42,6 @@ class VBCableSoundPlayer:
                 break
 
         if output_device_id is None:
-            print("VBCable not found")
+            print("VB-CABLE not installed.\nhttps://vb-audio.com/Cable/")
             exit()
         return output_device_id
