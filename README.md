@@ -1,4 +1,4 @@
-# vbcable_output
+# vbcable_output (python)
 
 This package outputs audio to the VBCable virtual audio device.   
 https://vb-audio.com/Cable/
