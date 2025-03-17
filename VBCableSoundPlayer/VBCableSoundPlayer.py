@@ -42,6 +42,6 @@ class VBCableSoundPlayer:
                 break
 
         if output_device_id is None:
-            print("VB-CABLE not installed.\nhttps://vb-audio.com/Cable/")
+            print("VB-CABLE is not installed.\nhttps://vb-audio.com/Cable/")
             exit()
         return output_device_id
