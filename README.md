@@ -1,4 +1,4 @@
-# VBCableSoundPlayer
+# vbcable_output
 
 This package outputs audio to the VBCable virtual audio device.   
 https://vb-audio.com/Cable/
@@ -8,15 +8,15 @@ https://vb-audio.com/Cable/
 You can install the package using pip:
 
 ```
-pip install VBCableSoundPlayer
+pip install vbcable_output
 ```
 
 ## Usage
 ```python
-import VBCableSoundPlayer
+import vbcable_output
 
-VBCableSoundPlayer.play(data, rate)
-VBCableSoundPlayer.wait()
+vbcable_output.play(data, rate)
+vbcable_output.wait()
 ```
 
 ## Parameters

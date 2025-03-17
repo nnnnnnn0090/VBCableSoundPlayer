@@ -1,12 +1,12 @@
-# VBCableSoundPlayer/VBCableSoundPlayer.py
+# vbcable_output/vbcable_output.py
 
 import sounddevice as sd
 
-class VBCableSoundPlayer:
+class vbcable_output:
     _instance = None
 
     def __init__(self, output_device_name="CABLE Input") -> None:
-        if VBCableSoundPlayer._instance is not None:
+        if vbcable_output._instance is not None:
             raise Exception("This class is a singleton!")
         self.output_device_name = output_device_name
         output_device_id = self._search_output_device_id(output_device_name)
