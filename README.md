@@ -17,8 +17,10 @@ import vbcable_output
 
 # Play the given data at the specified rate.
 vbcable_output.play(data, rate)
+
 # Wait for the sound to finish playing.
 vbcable_output.wait()
+
 # Check if the VB-CABLE is installed.
 vbcable_output.is_vbcable_installed() => bool
 ```
