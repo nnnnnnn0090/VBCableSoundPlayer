@@ -1,47 +1,39 @@
-# vbcable_output/vbcable_output.py
-
 import sounddevice as sd
 
 class vbcable_output:
-    _instance = None
-
-    def __init__(self, output_device_name="CABLE Input") -> None:
-        if vbcable_output._instance is not None:
-            raise Exception("This class is a singleton!")
-        self.output_device_name = output_device_name
-        output_device_id = self._search_output_device_id(output_device_name)
+    @staticmethod
+    def play(data, rate):
+        """Play the given data at the specified rate."""
+        output_device_name = "CABLE Input"
+        output_device_id = vbcable_output._search_output_device_id(output_device_name)
         input_device_id = 0
         sd.default.device = [input_device_id, output_device_id]
-
-    @classmethod
-    def init_player(cls):
-        if cls._instance is None:
-            cls._instance = cls(output_device_name="CABLE Input")
-
-    @classmethod
-    def play(cls, data, rate) -> bool:
-        if cls._instance is None:
-            cls.init_player()
         sd.play(data, rate)
         return True
-    
-    @classmethod
-    def wait(cls):
-        if cls._instance is None:
-            cls.init_player()
-        sd.wait()
 
-    def _search_output_device_id(self, output_device_name, output_device_host_api=0) -> int:
+    @staticmethod
+    def wait():
+        """Wait for the sound to finish playing."""
+        sd.wait()
+        
+    @staticmethod
+    def is_vbcable_installed():
+        """Check if the VB-CABLE is installed."""
         devices = sd.query_devices()
-        output_device_id = None
+        for device in devices:
+            if "CABLE Input" in device["name"]:
+                return True
+        return False
+
+    @staticmethod
+    def _search_output_device_id(output_device_name, output_device_host_api=0):
+        """Search and return the device ID for the output device."""
+        devices = sd.query_devices()
         for device in devices:
             is_output_device_name = output_device_name in device["name"]
             is_output_device_host_api = device["hostapi"] == output_device_host_api
+            
             if is_output_device_name and is_output_device_host_api:
-                output_device_id = device["index"]
-                break
+                return device["index"]
 
-        if output_device_id is None:
-            print("VB-CABLE is not installed.\nhttps://vb-audio.com/Cable/")
-            exit()
-        return output_device_id
+        raise RuntimeError("VB-CABLE is not installed. Please visit https://vb-audio.com/Cable/")

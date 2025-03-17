@@ -2,10 +2,9 @@
 
 from .vbcable_output import vbcable_output
 
-vbcable_output.init_player()
-
 play = vbcable_output.play
 wait = vbcable_output.wait
+is_vbcable_installed = vbcable_output.is_vbcable_installed
 
 __version__ = "0.1.0"
-__all__ = ['play', 'wait']
+__all__ = ['play', 'wait', 'is_vbcable_installed']
